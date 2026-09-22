@@ -7,14 +7,24 @@ title: 相册
     <div><div class="eyebrow">GALLERY / 相册</div><h2>用镜头，<br>记录生活。</h2></div>
     <p>图片放进 assets/gallery/ 目录即可自动展示，<br>文件名会显示为图片说明。点击可查看大图。</p>
   </div>
-  {% assign gallery_files = site.static_files | where_exp: "item", "item.path contains 'assets/gallery/' and item.name != '.gitkeep' and item.name != '.DS_Store' and item.name != 'Thumbs.db' and item.name != 'desktop.ini'" | sort: "path" | reverse %}
-  {% if gallery_files.size > 0 %}
+  {% assign gallery_candidates = site.static_files | where_exp: "item", "item.path contains 'assets/gallery/'" | sort: "path" | reverse %}
+  {% comment %} 先统计有效图片数（兼容不支持 where_exp 多条件的 Jekyll 版本） {% endcomment %}
+  {% assign gallery_count = 0 %}
+  {% for file in gallery_candidates %}
+    {% assign ext = file.extname | downcase %}
+    {% if ext == '.jpg' or ext == '.jpeg' or ext == '.png' or ext == '.gif' or ext == '.webp' or ext == '.svg' or ext == '.avif' or ext == '.bmp' %}
+      {% assign gallery_count = gallery_count | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+  {% if gallery_count > 0 %}
   <div class="gallery-grid">
-    {% for file in gallery_files %}
-    <figure>
-      <img src="{{ file.path | relative_url }}" loading="lazy" alt="{{ file.basename }}">
-      <figcaption><span>{{ file.basename | replace: '-', ' ' }}</span><span>{{ file.extname | remove: '.' | upcase }}</span></figcaption>
-    </figure>
+    {% for file in gallery_candidates %}
+      {% assign ext = file.extname | downcase %}
+      {% unless ext == '.jpg' or ext == '.jpeg' or ext == '.png' or ext == '.gif' or ext == '.webp' or ext == '.svg' or ext == '.avif' or ext == '.bmp' %}{% continue %}{% endunless %}
+      <figure>
+        <img src="{{ file.path | relative_url }}" loading="lazy" alt="{{ file.basename }}">
+        <figcaption><span>{{ file.basename | replace: '-', ' ' }}</span><span>{{ file.extname | remove: '.' | upcase }}</span></figcaption>
+      </figure>
     {% endfor %}
   </div>
   {% else %}
