@@ -1,0 +1,33 @@
+---
+layout: default
+title: 全部文章
+---
+<section class="section container">
+  <div class="section-heading">
+    <div><div class="eyebrow">ARCHIVE / 文章</div><h2>全部文章。</h2></div>
+    <p>共 {{ site.posts.size }} 篇。<br>点击栏目按钮可以筛选。</p>
+  </div>
+  <div class="filter-chips" data-filter-bar>
+    <button class="chip active" data-filter="all" type="button">全部</button>
+    {% for category in site.categories %}
+    <button class="chip" data-filter="{{ category[0] }}" type="button">{{ category[0] }} <span>{{ category[1].size }}</span></button>
+    {% endfor %}
+  </div>
+  {% assign year_groups = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+  {% for group in year_groups %}
+  <div class="year-group" data-year-group>
+    <div class="year-label">{{ group.name }}</div>
+    <div class="post-list">
+      {% for post in group.items %}
+      <a class="post-item" href="{{ post.url | relative_url }}" data-categories="{{ post.categories | join: '|' }}">
+        <span class="post-index">{{ post.date | date: '%m.%d' }}</span>
+        <div class="item-body"><h3>{{ post.title }}</h3><p>{{ post.excerpt | strip_html | truncate: 90 }}</p></div>
+        <div class="post-item-meta"><span class="cat">{{ post.categories | join: ' / ' }}</span></div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="empty-note">还没有文章。<br>把 Markdown 文件放进 <code>_posts/</code> 目录，命名格式为 <code>YYYY-MM-DD-标题.md</code>，推送后就会出现在这里。</div>
+  {% endfor %}
+</section>

@@ -1,0 +1,35 @@
+# ============================================================
+# 站点配置 — Furina 的博客
+# 日常维护最常改的是「外观设置」和基础信息两块。
+# 任何改动后 git push，GitHub Pages 会自动重新构建（约 1 分钟）。
+# ============================================================
+
+# —— 基础信息 ——
+title: Furina 的博客               # 站点名称，显示在顶部品牌处与浏览器标签
+description: 记录、思考与生活。     # 站点描述，用于搜索与分享摘要
+lang: zh-CN
+timezone: Asia/Shanghai
+url: https://furina-1314.github.io # 线上地址（若日后绑定自定义域名，改这里）
+
+# —— 外观设置 ——
+accent_color: "#c32f37"            # 主题色：按钮、链接、点缀。换颜色只改这里，如 "#2563eb"
+background_image: ""               # 背景图片：填图片路径如 assets/img/bg.jpg；留空 = 纯白背景
+
+# —— 文章链接格式 ——
+permalink: /blog/:year/:month/:day/:title/
+
+# —— Markdown 设置（建议保持不变，按 GitHub 书写习惯写即可）——
+markdown: kramdown
+kramdown:
+  input: GFM
+
+# —— Jekyll 插件（均为 GitHub Pages 官方支持）——
+plugins:
+  - jekyll-feed                    # 自动生成 RSS 订阅 /feed.xml
+
+# —— 不参与构建的文件 ——
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

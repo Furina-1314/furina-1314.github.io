@@ -1,0 +1,77 @@
+---
+layout: default
+---
+<!-- 首屏 -->
+<section class="hero container">
+  <div class="eyebrow"><span class="red-line"></span> FURINA'S BLOG · 记录、思考与生活</div>
+  <div class="hero-heading">
+    <h1>保持好奇，<br><span class="accent">持续记录。</span></h1>
+    <div class="hero-copy">
+      <p>这里存放我的文字与照片：<br>技术笔记、生活随想，<br>以及一些值得留住的瞬间。</p>
+      <div class="hero-actions">
+        <a class="button" href="{{ '/blog/' | relative_url }}">阅读文章 <span aria-hidden="true">↓</span></a>
+        <a class="text-link" href="{{ '/about/' | relative_url }}">关于我 <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-note">共 {{ site.posts.size }} 篇文章 <span>·</span> 最后更新于 {{ site.posts.first.date | date: '%Y-%m-%d' }} <span>·</span> <a href="{{ '/feed.xml' | relative_url }}">RSS 订阅</a></div>
+    </div>
+  </div>
+  <div class="principles">
+    <div><span class="principle-number">01</span><span>写作，为了思考</span></div>
+    <div><span class="principle-number">02</span><span>拍摄，为了记住</span></div>
+    <div><span class="principle-number">03</span><span>分享，为了相遇</span></div>
+  </div>
+</section>
+
+<!-- 最新文章 -->
+<section class="section container" id="latest">
+  <div class="section-heading">
+    <div><div class="eyebrow">LATEST / 最新文章</div><h2>最近的记录。</h2></div>
+    <p>按时间倒序排列，<br>点击标题阅读全文。</p>
+  </div>
+  <div class="post-list">
+    {% for post in site.posts limit:5 %}
+    <a class="post-item" href="{{ post.url | relative_url }}">
+      <span class="post-index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+      <div class="item-body"><h3>{{ post.title }}</h3><p>{{ post.excerpt | strip_html | truncate: 90 }}</p></div>
+      <div class="post-item-meta"><span class="cat">{{ post.categories | join: ' / ' }}</span><span>{{ post.date | date: '%Y-%m-%d' }}</span></div>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="section-more"><a class="text-link" href="{{ '/blog/' | relative_url }}">查看全部文章 <span aria-hidden="true">→</span></a></div>
+</section>
+
+<!-- 栏目（由文章分类自动生成） -->
+<section class="topics-section" id="topics">
+  <div class="container">
+    <div class="section-heading">
+      <div><div class="eyebrow">TOPICS / 栏目</div><h2>写过的方向。</h2></div>
+      <p>栏目由文章的分类（categories）自动生成，<br>点击可在文章页按栏目筛选。</p>
+    </div>
+    <div class="feature-grid">
+      {% for category in site.categories %}
+      <a class="feature" href="{{ '/blog/' | relative_url }}#{{ category[0] | uri_escape }}">
+        <span class="feature-index">{{ forloop.index | prepend: '0' | slice: -2, 2 }} / {{ category[1].size }} 篇</span>
+        <h3>{{ category[0] }}</h3>
+        <p>{{ category[1].first.excerpt | strip_html | truncate: 70 }}</p>
+      </a>
+      {% else %}
+      <div class="feature"><span class="feature-index">00</span><h3>暂无栏目</h3><p>发布第一篇文章后，栏目会自动出现在这里。</p></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 深色收尾区块 -->
+<section class="band-dark" id="about-band">
+  <div class="container band-dark-inner">
+    <div>
+      <div class="eyebrow">STAY CURIOUS / 关于这里</div>
+      <h2>把想法，<br>留在文字里。</h2>
+      <p>这是 {{ site.title }} 的自留地：记录学习与生活，也收藏走过的路、看过的风景。欢迎常来坐坐。</p>
+    </div>
+    <div class="hero-actions">
+      <a class="button" href="{{ '/about/' | relative_url }}">了解我 <span aria-hidden="true">→</span></a>
+      <a class="text-link" href="{{ '/gallery/' | relative_url }}">浏览相册 <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>

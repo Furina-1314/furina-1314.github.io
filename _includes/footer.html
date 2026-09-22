@@ -1,0 +1,14 @@
+<footer class="footer">
+  <div class="container footer-top">
+    <a class="brand" href="{{ '/' | relative_url }}"><img src="{{ '/assets/favicon.svg' | relative_url }}" width="28" height="28" alt=""><span class="app-wordmark">{{ site.title }}</span></a>
+    <span>{{ site.description }}</span>
+    <nav aria-label="页脚导航">
+      {% for item in site.data.navigation %}<a href="{{ item.url | relative_url }}"{% if item.external %} target="_blank" rel="noopener"{% endif %}>{{ item.title }}</a>{% endfor %}
+    </nav>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {{ site.time | date: '%Y' }} {{ site.title }}</span>
+    <span>基于 Jekyll · 托管于 GitHub Pages</span>
+    <a href="#">回到顶部 ↑</a>
+  </div>
+</footer>

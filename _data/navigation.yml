@@ -1,0 +1,17 @@
+# ============================================================
+# 顶部导航（栏目）管理
+# - 新增栏目：照格式追加一项即可；title 为显示文字，url 为链接
+# - 内部链接形如 /blog/；外部链接填完整 https:// 地址并加 external: true
+# - 顺序即显示顺序；删除某项即从导航中移除
+# ============================================================
+- title: 首页
+  url: /
+- title: 文章
+  url: /blog/
+- title: 相册
+  url: /gallery/
+- title: 关于
+  url: /about/
+- title: GitHub
+  url: https://github.com/Furina-1314
+  external: true

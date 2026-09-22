@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<article class="container-narrow">
+  <header class="post-header">
+    <div class="eyebrow"><span class="red-line"></span> {{ page.eyebrow | default: 'PAGE' }}</div>
+    <h1 class="post-title">{{ page.title }}</h1>
+  </header>
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>

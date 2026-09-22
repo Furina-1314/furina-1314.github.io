@@ -1,0 +1,20 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} 首页">
+      <img src="{{ '/assets/favicon.svg' | relative_url }}" width="32" height="32" alt="">
+      <span class="app-wordmark">{{ site.title }}</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="navigation">菜单 <span aria-hidden="true">☰</span></button>
+    <nav id="navigation" aria-label="主导航">
+      {% for item in site.data.navigation %}
+      {% assign is_active = false %}
+      {% if page.url == item.url %}
+        {% assign is_active = true %}
+      {% elsif item.url != '/' and item.external != true and page.url contains item.url %}
+        {% assign is_active = true %}
+      {% endif %}
+      <a href="{{ item.url | relative_url }}"{% if item.external %} target="_blank" rel="noopener"{% elsif is_active %} class="active" aria-current="page"{% endif %}>{{ item.title }}{% if item.external %} <span aria-hidden="true">↗</span>{% endif %}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>
