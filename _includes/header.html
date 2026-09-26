@@ -7,6 +7,19 @@
     <button class="menu-toggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="navigation">菜单 <span aria-hidden="true">☰</span></button>
     <nav id="navigation" aria-label="主导航">
       {% for item in site.data.navigation %}
+      {% if item.children %}
+      <div class="nav-dropdown">
+        <button class="nav-drop-toggle" type="button" aria-haspopup="true" aria-expanded="false">{{ item.title }} <span class="drop-caret" aria-hidden="true">▾</span></button>
+        <div class="drop-panel">
+          {% for child in item.children %}
+          <a href="{{ child.url }}" target="_blank" rel="noopener">
+            <span class="drop-title">{{ child.title }} <span class="ext" aria-hidden="true">↗</span></span>
+            {% if child.desc %}<span class="drop-desc">{{ child.desc }}</span>{% endif %}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% else %}
       {% assign is_active = false %}
       {% if page.url == item.url %}
         {% assign is_active = true %}
@@ -14,6 +27,7 @@
         {% assign is_active = true %}
       {% endif %}
       <a href="{{ item.url | relative_url }}"{% if item.external %} target="_blank" rel="noopener"{% elsif is_active %} class="active" aria-current="page"{% endif %}>{{ item.title }}{% if item.external %} <span aria-hidden="true">↗</span>{% endif %}</a>
+      {% endif %}
       {% endfor %}
     </nav>
   </div>

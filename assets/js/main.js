@@ -22,6 +22,31 @@ if (toggle && navigation) {
   window.matchMedia('(min-width: 801px)').addEventListener('change', closeMenu);
 }
 
+/* —— 产品下拉菜单：触屏设备点按展开，点击外部关闭 —— */
+document.querySelectorAll('.nav-dropdown').forEach((dd) => {
+  const btn = dd.querySelector('.nav-drop-toggle');
+  if (!btn) return;
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = dd.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+    document.querySelectorAll('.nav-dropdown.open').forEach((other) => {
+      if (other !== dd) {
+        other.classList.remove('open');
+        other.querySelector('.nav-drop-toggle')?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+});
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.nav-dropdown.open').forEach((dd) => {
+    if (!dd.contains(e.target)) {
+      dd.classList.remove('open');
+      dd.querySelector('.nav-drop-toggle')?.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+
 /* —— 文章页：按栏目筛选（支持 /blog/#栏目名 直达） —— */
 const filterBar = document.querySelector('[data-filter-bar]');
 if (filterBar) {

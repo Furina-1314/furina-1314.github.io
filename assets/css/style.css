@@ -71,6 +71,22 @@ h1 .accent,h2 .accent{color:var(--accent)}
 .header-inner nav>a.active{color:var(--accent);border-bottom-color:var(--accent)}
 .menu-toggle{display:none}
 
+/* —— 下拉菜单（产品） —— */
+.nav-dropdown{position:relative}
+.nav-dropdown::after{content:"";position:absolute;top:100%;left:0;right:0;height:12px}
+.nav-drop-toggle{display:inline-flex;align-items:center;gap:6px;background:none;border:0;border-bottom:2px solid transparent;padding:6px 2px;font-size:14px;color:inherit;cursor:pointer}
+.nav-drop-toggle:hover{color:var(--accent)}
+.drop-caret{font-size:10px;transition:transform .2s}
+.nav-dropdown.open .drop-caret,.nav-dropdown:hover .drop-caret,.nav-dropdown:focus-within .drop-caret{transform:rotate(180deg)}
+.drop-panel{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:300px;background:#fff;border:1px solid var(--line);box-shadow:0 24px 70px -40px rgba(32,35,39,.5);padding:10px;display:none;z-index:30}
+.nav-dropdown:hover .drop-panel,.nav-dropdown:focus-within .drop-panel,.nav-dropdown.open .drop-panel{display:block}
+.drop-panel a{display:flex;flex-direction:column;gap:3px;padding:12px 14px;border-radius:4px}
+.drop-panel a:hover{background:var(--surface);color:inherit}
+.drop-panel a:hover .drop-title{color:var(--accent)}
+.drop-title{font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
+.drop-title .ext{color:var(--muted);font-size:12px;font-weight:400}
+.drop-desc{font-size:12px;color:var(--muted);line-height:1.7}
+
 /* ---------- ⑤ 首页：首屏 ---------- */
 .hero{padding-top:72px}
 .hero-heading{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:60px;margin:28px 0 56px}
@@ -176,6 +192,7 @@ a.feature:hover{background:#fff}
   .container{width:calc(100% - 64px)}
   .hero-heading{gap:35px}
   .band-dark-inner{grid-template-columns:1.1fr .9fr;gap:40px}
+  .drop-panel{left:auto;right:0;transform:none}
 }
 @media(max-width:800px){
   .container{width:calc(100% - 40px)}
@@ -185,6 +202,12 @@ a.feature:hover{background:#fff}
   .header-inner nav{display:none;position:absolute;top:69px;left:0;right:0;padding:14px 20px;background:#fff;border-bottom:1px solid var(--line);align-items:stretch}
   .header-inner nav.open{display:flex;flex-direction:column;gap:0}
   .header-inner nav>a{padding:14px 2px;border-bottom:none}
+  .nav-dropdown::after{display:none}
+  .nav-dropdown{display:flex;flex-direction:column}
+  .nav-drop-toggle{padding:14px 2px;border-bottom:none;justify-content:flex-start;width:100%;text-align:left}
+  .header-inner nav .drop-panel{display:flex;position:static;transform:none;box-shadow:none;border:0;padding:0 0 10px 14px;min-width:0;flex-direction:column;gap:0}
+  .drop-panel a{padding:11px 2px}
+  .drop-title .ext{display:none}
   .hero{padding-top:44px}
   .hero-heading{grid-template-columns:1fr;gap:26px;margin:22px 0 38px}
   .section{padding-block:68px}
