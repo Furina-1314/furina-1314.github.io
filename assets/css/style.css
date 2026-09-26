@@ -191,7 +191,7 @@ a.feature:hover{background:#fff}
   .container{width:calc(100% - 64px)}
   .hero-heading{gap:35px}
   .band-dark-inner{grid-template-columns:1.1fr .9fr;gap:40px}
-  .header-inner nav{gap:18px}
+  .header-inner nav{gap:13px}
   .drop-panel{left:auto;right:0;transform:none}
 }
 @media(max-width:800px){
