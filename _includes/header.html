@@ -14,7 +14,6 @@
           {% for child in item.children %}
           <a href="{{ child.url }}" target="_blank" rel="noopener">
             <span class="drop-title">{{ child.title }} <span class="ext" aria-hidden="true">↗</span></span>
-            {% if child.desc %}<span class="drop-desc">{{ child.desc }}</span>{% endif %}
           </a>
           {% endfor %}
         </div>

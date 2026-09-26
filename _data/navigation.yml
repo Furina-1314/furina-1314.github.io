@@ -2,7 +2,7 @@
 # 顶部导航（栏目）管理
 # - 新增栏目：照格式追加一项即可；title 为显示文字，url 为链接
 # - 内部链接形如 /blog/；外部链接填完整 https:// 地址并加 external: true
-# - 带子菜单的栏目用 children: 列表（如「产品」），子项支持 desc 简介文字
+# - 带子菜单的栏目用 children: 列表（如「产品」），子项为下拉菜单内容
 # - 顺序即显示顺序；删除某项即从导航中移除
 # ============================================================
 - title: 首页
@@ -17,15 +17,12 @@
   url: https://furina-1314.github.io/Equora/
   external: true
   children:
-    - title: 衡序 Equora
+    - title: Equora
       url: https://furina-1314.github.io/Equora/
-      desc: 本地优先的 Windows 日程规划与专注软件
-    - title: 矩衡 Recta
+    - title: Recta
       url: https://furina-1314.github.io/Recta/
-      desc: 面向高校班委的财务审批与分户账管理系统
     - title: WhereIsMyMoney
       url: https://github.com/Furina-1314/WhereIsMyMoney
-      desc: 个人记账程序（Qt Quick + SQLite）
 - title: GitHub
   url: https://github.com/Furina-1314
   external: true
